@@ -1,0 +1,20 @@
+<table class="table">
+  <tr>
+    <th>
+      Finalized
+      <select [formControl]="status" (change)="filterTaskStatus.emit($event)">
+        <option *ngFor="let option of filterOptions" [value]="option.value"> {{ option.label | titlecase}} </option>
+      </select>
+    </th>
+    <th style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%;">
+      Label
+      <input type="text" [formControl]="filter" style="flex: 1; width: 80%;">
+    </th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let item of tasks; index as i" [ngClass]="{'finished': item.finished}">
+    <td><input type="checkbox" [attr.checked]="item.finished ? true : null" (change)="markAs.emit({event: $event, index: i})"></td>
+    <td>{{ item.label }}</td>
+    <td class="actions"><button (click)="removeTask.emit(item.id)">x</button></td>
+  </tr>
+</table>  

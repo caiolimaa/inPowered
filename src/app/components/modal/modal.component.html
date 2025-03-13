@@ -1,0 +1,10 @@
+<div *ngIf="isOpen" class="modal">
+  <div class="modal-content" (click)="$event.stopPropagation();">
+    <h2>Are you sure that you want to remove {{label}}?</h2>
+    <p>You can't undo this action.</p>
+    <div class="modal-actions">
+      <button class="btn btn-danger" style="margin-right: 8px;" (click)="onCancel()">Cancel</button>
+      <button class="btn btn-success" (click)="onConfirm()">Confirm</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="bg-blue-500" style="display: flex">
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <input formControlName="taskTitle" type="text" >
+    <button class="btn-success" type="submit" [disabled]="taskForm.invalid">Add New Task</button>
+  </form>
+</div>
+
+<div style="display:flex; flex-direction: column; margin-top: 20px;">
+  <app-task-table 
+    [tasks]="tasks"
+    (filterTask)="filterTasks($event)"
+    (markAs)="markAs($event)"
+    (removeTask)="removeTask($event)"
+    (filterTaskStatus)="filterTaskStatus($event)"></app-task-table>
+</div>
+
+<div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" *ngIf="showConfirmationModal" >
+  <app-modal [label]="deletedTask.label" (confirm)="onConfirm()" (cancel)="onCancel()"></app-modal>
+</div>
